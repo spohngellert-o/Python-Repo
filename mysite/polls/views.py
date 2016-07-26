@@ -3,6 +3,8 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.views import generic
 from django.utils import timezone
+from django.shortcuts import render_to_response
+from django.contrib import auth
 
 from .models import Choice, Question
 
@@ -56,3 +58,11 @@ def vote(request, question_id):
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+
+def index(request):
+	username = request.user.username
+	return render_to_response('polls/index.html', {'username': username, 'latest_question_list': Question.objects.filter(pub_date__lte=timezone.now()).order_by('-pub_date')[:5]})
+	
+def logout(request):
+	auth.logout(request)
+	return HttpResponseRedirect("/home")

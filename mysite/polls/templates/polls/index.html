@@ -4,6 +4,9 @@
      <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
 	</head>
 	<body>
+		{% if username %}
+			<p>Hello {{ username }}! <a href="/polls/logout">Logout?</a></p>
+		{% endif %}
 		{% if latest_question_list %}
 			<ul>
 			{% for question in latest_question_list %}

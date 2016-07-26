@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate
 from django.core.context_processors import csrf
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
+from django.contrib import auth
 
 # ...
 def getHomePage(request):

@@ -3,6 +3,12 @@ from django.utils import timezone
 import datetime
 
 class Question(models.Model):
+	
+    class Meta:
+        permissions = (
+            ("can_vote", "Whether a user can vote or not on polls."),
+			("can_view", "Can the user view?")
+        )
     question_text = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
 	
